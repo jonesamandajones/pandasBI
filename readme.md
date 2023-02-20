@@ -2,17 +2,17 @@
 
 ## Tratando arquivo csv com biblioteca Pandas via Power BI
 
-### 1. Importação da biblioteca e leitura do arquivo de dados:
-
 ---
+
+
+
+### 1. Importação da biblioteca e leitura do arquivo de dados:
 
 ```python
 import pandas as pddf = pd.read_csv('RAINHAS.csv')
 ```
 
 ### 2. Limpando espaços em branco desnecessários:
-
----
 
 ```python
 df['NOME'] = df['NOME'].str.strip()
@@ -24,18 +24,21 @@ df['NOME'] = df['NOME'].str.strip()
 df['ID'] = pd.to_numeric(df['ID'])
 ```
 
-
 ### 4. Transformando dados em texto da coluna para data:
-
----
 
 ```python
 df['DATA_NASCIMENTO'] = pd.to_datetime(df['DATA_NASCIMENTO'])
 ```
 
-### 5. Executar o código no Script Python do Power BI:
+### 5. Transformando o conteúdo da coluna:
 
----
+```python
+df['SEXO'] = df['SEXO'].replace(['F'], 'FEMININO')
+
+df['SEXO'] = df['SEXO'].replace(['M'], 'MASCULINO')
+```
+
+### 6. Executar o código no Script Python do Power BI:
 
 ```python
 import pandas as pddf = pd.read_csv('RAINHAS.csv')df['NOME'] = df['NOME'].str.strip()df['ID'] = pd.to_numeric(df['ID'])df['DATA_NASCIMENTO'] = pd.to_datetime(df['DATA_NASCIMENTO'])
@@ -45,16 +48,14 @@ import pandas as pddf = pd.read_csv('RAINHAS.csv')df['NOME'] = df['NOME'].str.st
 
 ![Imagem do código inserido no script python do Power BI](BI1.png)
 
----
-
 ##### Imagem da tabela no Power Query:
 
 ![Imagem da tabela no Power Query](BI2.png)
-
----
 
 ##### Imagem final da tabela no Power BI
 
 ![Imagem final da tabela no Power BI](BI3.png)
 
----
+##### Dashboard:
+
+![dashboard](dashboard.png)
